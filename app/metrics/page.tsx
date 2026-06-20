@@ -29,17 +29,17 @@ export default function MetricsPage() {
   ] : [];
 
   return (
-    <main className="min-h-screen bg-[#0D1B2A] text-white p-8">
+    <main className="min-h-screen bg-[#F6F7F9] text-[#0D1B2A] p-8">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-2xl font-bold mb-2">📊 Operational Metrics</h1>
-        <p className="text-gray-400 mb-8">Platform health for the Accra Central ↔ Oyarifa pilot</p>
-        {loading ? <p className="text-gray-400">Loading…</p> : (
+        <p className="text-gray-500 mb-8">Platform health for the Accra Central ↔ Oyarifa pilot</p>
+        {loading ? <p className="text-gray-500">Loading…</p> : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {STATS.map(s => (
-              <div key={s.label} className="bg-[#162233] rounded-xl p-5 border border-[#243447]">
+              <div key={s.label} className="bg-white rounded-xl p-5 border border-gray-200 shadow-sm">
                 <div className="text-2xl mb-2">{s.icon}</div>
-                <div className="text-2xl font-bold text-[#F5B800]">{s.value ?? '—'}</div>
-                <div className="text-sm text-gray-400 mt-1">{s.label}</div>
+                <div className="text-2xl font-bold text-[#0D1B2A]">{s.value ?? '—'}</div>
+                <div className="text-sm text-gray-500 mt-1">{s.label}</div>
               </div>
             ))}
           </div>

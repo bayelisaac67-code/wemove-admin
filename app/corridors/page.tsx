@@ -42,41 +42,41 @@ export default function CorridorsPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#0D1B2A] text-white p-8">
+    <main className="min-h-screen bg-[#F6F7F9] text-[#0D1B2A] p-8">
       <div className="max-w-5xl mx-auto">
         <h1 className="text-2xl font-bold mb-2">🗺️ Corridors & Pickup Points</h1>
-        <p className="text-gray-400 mb-8">Manage routes and boarding locations</p>
+        <p className="text-gray-500 mb-8">Manage routes and boarding locations</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
-            <h2 className="font-semibold mb-3 text-gray-300">Corridors</h2>
-            {loading ? <p className="text-gray-400 text-sm">Loading…</p> : corridors.map(c => (
-              <button key={c.id} onClick={() => selectCorridor(c)} className={`w-full text-left p-4 rounded-xl mb-2 border transition-colors ${selected?.id === c.id ? 'border-[#F5B800] bg-[#162233]' : 'border-[#243447] bg-[#162233] hover:border-[#F5B800]'}`}>
+            <h2 className="font-semibold mb-3 text-gray-600">Corridors</h2>
+            {loading ? <p className="text-gray-500 text-sm">Loading…</p> : corridors.map(c => (
+              <button key={c.id} onClick={() => selectCorridor(c)} className={`w-full text-left p-4 rounded-xl mb-2 border shadow-sm transition-colors ${selected?.id === c.id ? 'border-[#F5B800] bg-white' : 'border-gray-200 bg-white hover:border-[#F5B800]'}`}>
                 <p className="font-semibold text-sm">{c.name}</p>
-                <p className="text-gray-400 text-xs mt-0.5">{c.status}</p>
+                <p className="text-gray-500 text-xs mt-0.5">{c.status}</p>
               </button>
             ))}
           </div>
           {selected && (
             <div className="md:col-span-2">
-              <h2 className="font-semibold mb-3 text-gray-300">Pickup points — {selected.name}</h2>
+              <h2 className="font-semibold mb-3 text-gray-600">Pickup points — {selected.name}</h2>
               <div className="flex flex-col gap-2 mb-6">
                 {points.map((p, i) => (
-                  <div key={p.id} className="bg-[#162233] rounded-xl px-4 py-3 border border-[#243447] flex items-center gap-3">
+                  <div key={p.id} className="bg-white rounded-xl px-4 py-3 border border-gray-200 shadow-sm flex items-center gap-3">
                     <span className="w-6 h-6 rounded-full bg-[#F5B800] text-[#0D1B2A] text-xs font-bold flex items-center justify-center flex-shrink-0">{i + 1}</span>
                     <div className="flex-1">
                       <p className="font-semibold text-sm">{p.name}</p>
-                      <p className="text-gray-400 text-xs">{p.location?.lat?.toFixed(5)}, {p.location?.lng?.toFixed(5)} · {p.geofence_radius_m}m radius</p>
+                      <p className="text-gray-500 text-xs">{p.location?.lat?.toFixed(5)}, {p.location?.lng?.toFixed(5)} · {p.geofence_radius_m}m radius</p>
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="bg-[#162233] rounded-xl p-5 border border-[#243447]">
+              <div className="bg-white rounded-xl p-5 border border-gray-200 shadow-sm">
                 <h3 className="font-semibold mb-3 text-sm">Add pickup point</h3>
                 <div className="grid grid-cols-2 gap-3 mb-3">
                   {[{ label: 'Name', key: 'name', placeholder: 'e.g. 37 Station' }, { label: 'Latitude', key: 'lat', placeholder: '5.5502' }, { label: 'Longitude', key: 'lng', placeholder: '-0.1969' }, { label: 'Geofence (m)', key: 'radius', placeholder: '50' }].map(f => (
                     <div key={f.key}>
-                      <label className="text-xs text-gray-400 mb-1 block">{f.label}</label>
-                      <input className="w-full bg-[#0D1B2A] border border-[#243447] rounded-lg px-3 py-2 text-sm text-white placeholder-gray-600" placeholder={f.placeholder} value={newPoint[f.key as keyof typeof newPoint]} onChange={e => setNewPoint(p => ({ ...p, [f.key]: e.target.value }))} />
+                      <label className="text-xs text-gray-500 mb-1 block">{f.label}</label>
+                      <input className="w-full bg-white border border-gray-300 rounded-lg px-3 py-2 text-sm text-[#0D1B2A] placeholder-gray-400" placeholder={f.placeholder} value={newPoint[f.key as keyof typeof newPoint]} onChange={e => setNewPoint(p => ({ ...p, [f.key]: e.target.value }))} />
                     </div>
                   ))}
                 </div>
